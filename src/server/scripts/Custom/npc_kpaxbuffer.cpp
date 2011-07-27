@@ -22,6 +22,7 @@ public:
 			pPlayer->ADD_GOSSIP_ITEM(5, "Чародейская гениальность."			, GOSSIP_SENDER_MAIN, 2206);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Великое благословение мудрости."	, GOSSIP_SENDER_MAIN, 2207);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Великое благословение королей."	, GOSSIP_SENDER_MAIN, 2208);
+			pPlayer->ADD_GOSSIP_ITEM(5, "Великое благословение могущества"	, GOSSIP_SENDER_MAIN, 2213);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Великое благословение неприкосновенности."	, GOSSIP_SENDER_MAIN, 2209);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Шипы."								, GOSSIP_SENDER_MAIN, 2210);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Командирский крик."				, GOSSIP_SENDER_MAIN, 2211);
@@ -36,6 +37,7 @@ public:
 			pPlayer->ADD_GOSSIP_ITEM(5, "Чародейская гениальность."			, GOSSIP_SENDER_MAIN, 2206);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Великое благословение мудрости."	, GOSSIP_SENDER_MAIN, 2207);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Великое благословение королей."	, GOSSIP_SENDER_MAIN, 2208);
+			pPlayer->ADD_GOSSIP_ITEM(5, "Великое благословение могущества"	, GOSSIP_SENDER_MAIN, 2213);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Великое благословение неприкосновенности."	, GOSSIP_SENDER_MAIN, 2209);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Шипы."								, GOSSIP_SENDER_MAIN, 2210);
 			pPlayer->ADD_GOSSIP_ITEM(5, "Командирский крик."				, GOSSIP_SENDER_MAIN, 2211);
@@ -207,6 +209,19 @@ public:
                     pPlayer->CastSpell(pPlayer, 57623, true);
                 }
                 break;		
+				
+			case 2213: // Paladin AttackPower
+                if (pPlayer->HasAura(48934) )
+                {
+                    pPlayer->CLOSE_GOSSIP_MENU();
+                    pCreature->MonsterSay("Извини, но на тебе уже есть этот бафф.", LANG_UNIVERSAL, NULL);
+                }
+                else
+                {
+                    pPlayer->CLOSE_GOSSIP_MENU();
+                    pPlayer->CastSpell(pPlayer, 48934, true);
+                }
+                break;					
 		}
 		
 		return true;			
