@@ -24,10 +24,8 @@ public:
             pPlayer->ADD_GOSSIP_ITEM(5, "Шаттрат."                         , GOSSIP_SENDER_MAIN, 1287);
             pPlayer->ADD_GOSSIP_ITEM(5, "Даларан."                         , GOSSIP_SENDER_MAIN, 1205);
             pPlayer->ADD_GOSSIP_ITEM(5, "Остров Кель'Данас."               , GOSSIP_SENDER_MAIN, 1288);
-			if (pPlayer->getLevel() >= 81 && pPlayer->HasAura(45523) )
-            {
-            pPlayer->ADD_GOSSIP_ITEM(5, "Остров ГМ."                       , GOSSIP_SENDER_MAIN, 1400);
-            }
+            if (pPlayer->getLevel() >= 81 && pPlayer->HasAura(45523))
+                pPlayer->ADD_GOSSIP_ITEM(5, "Остров ГМ."                       , GOSSIP_SENDER_MAIN, 1400);
             if (sConfig->GetIntDefault("RealmID", 0) == 5)
             {
                 pPlayer->ADD_GOSSIP_ITEM(5, "Стартовая локация."           , GOSSIP_SENDER_MAIN, 4039);
@@ -48,10 +46,8 @@ public:
             pPlayer->ADD_GOSSIP_ITEM(5, "Шаттрат."                         , GOSSIP_SENDER_MAIN, 1287);
             pPlayer->ADD_GOSSIP_ITEM(5, "Даларан."                         , GOSSIP_SENDER_MAIN, 1205);
             pPlayer->ADD_GOSSIP_ITEM(5, "Остров Кель'Данас."               , GOSSIP_SENDER_MAIN, 1288);
-			if (pPlayer->getLevel() >= 81 && pPlayer->HasAura(45523) )
-            {
-            pPlayer->ADD_GOSSIP_ITEM(5, "Остров ГМ."                       , GOSSIP_SENDER_MAIN, 1400);
-            }
+            if (pPlayer->getLevel() >= 81 && pPlayer->HasAura(45523))
+                pPlayer->ADD_GOSSIP_ITEM(5, "Остров ГМ."                       , GOSSIP_SENDER_MAIN, 1400);
             if (sConfig->GetIntDefault("RealmID", 0) == 5)
             {
                 pPlayer->ADD_GOSSIP_ITEM(5, "Стартовая локация."           , GOSSIP_SENDER_MAIN, 4039);
@@ -923,7 +919,7 @@ public:
                 }
                 break;
 				
-				case 1400: // GM Island
+            case 1400: // GM Island
                 {
                     pPlayer->CLOSE_GOSSIP_MENU();
                     pPlayer->TeleportTo(1, 16206.95f, 16217.187f, 1.096f, 1.056f);
