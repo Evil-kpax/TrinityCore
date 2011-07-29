@@ -30,7 +30,6 @@ void AddSC_event_npc();
 void AddSC_npc_lottery();
 void AddSC_DuelReset();
 void AddSC_argen_tournament();
-void AddSC_npc_kpaxbuffer();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1263,6 +1262,5 @@ void AddCustomScripts()
     AddSC_npc_lottery();
     AddSC_DuelReset();
     AddSC_argen_tournament();
-	AddSC_npc_kpaxbuffer();
 #endif
 }
