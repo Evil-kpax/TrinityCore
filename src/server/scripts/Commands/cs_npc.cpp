@@ -79,6 +79,22 @@ public:
             //}
             { NULL,             0,                  false, NULL,                               "", NULL }
         };
+        
+        static ChatCommand npcModifySpeedCommandTable[] =
+        {
+            { "walk",           SEC_GAMEMASTER,     false, &HandleNpcModifySpeedWalkCommand,   "", NULL },
+            { "run",            SEC_GAMEMASTER,     false, &HandleNpcModifySpeedRunCommand,    "", NULL },
+            { "swim",           SEC_GAMEMASTER,     false, &HandleNpcModifySpeedSwimCommand,   "", NULL },
+            { "flight",         SEC_GAMEMASTER,     false, &HandleNpcModifySpeedFlightCommand, "", NULL },
+            { NULL,             0,                  false, NULL,                               "", NULL }
+        };
+        
+        static ChatCommand npcModifyCommandTable[] =
+        {
+            { "speed",          SEC_GAMEMASTER,     false, &HandleNpcModifySpeedCommand,       "", npcModifySpeedCommandTable },
+            { NULL,             0,                  false, NULL,                               "", NULL }
+        };
+
         static ChatCommand npcCommandTable[] =
         {
             { "info",           SEC_ADMINISTRATOR,  false, &HandleNpcInfoCommand,              "", NULL },
@@ -93,6 +109,7 @@ public:
             { "delete",         SEC_GAMEMASTER,     false, NULL,              "", npcDeleteCommandTable },
             { "follow",         SEC_GAMEMASTER,     false, NULL,              "", npcFollowCommandTable },
             { "set",            SEC_GAMEMASTER,     false, NULL,                 "", npcSetCommandTable },
+            { "modify",         SEC_GAMEMASTER,     false, NULL,              "", npcModifyCommandTable },
             { NULL,             0,                  false, NULL,                               "", NULL }
         };
         static ChatCommand commandTable[] =
@@ -1234,7 +1251,155 @@ public:
         handler->PSendSysMessage("LinkGUID '%u' added to creature with DBTableGUID: '%u'", linkguid, creature->GetDBTableGUIDLow());
         return true;
     }
+    
+    static bool HandleNpcModifySpeedCommand(ChatHandler* handler, const char* args)
+    {
+        if (!*args)
+            return false;
 
+        float Speed = (float)atof((char*)args);
+
+        if (Speed > 50.0f || Speed < 0.1f)
+        {
+            handler->SendSysMessage(LANG_BAD_VALUE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+
+        Creature* target = handler->getSelectedCreature();
+        if (!target)
+        {
+            handler->SendSysMessage(LANG_SELECT_CREATURE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+        
+        handler->PSendSysMessage(LANG_YOU_CHANGE_ASPEED, Speed, "selected creature");
+        target->SetSpeed(MOVE_WALK,                 Speed,true);
+        target->SetSpeed(MOVE_RUN,                  Speed,true);
+        target->SetSpeed(MOVE_RUN_BACK,             Speed,true);
+        target->SetSpeed(MOVE_SWIM,                 Speed,true);
+        target->SetSpeed(MOVE_SWIM_BACK,            Speed,true);
+        target->SetSpeed(MOVE_FLIGHT,               Speed,true);
+        target->SetSpeed(MOVE_FLIGHT_BACK,          Speed,true);
+
+        return true;
+    }
+    
+    static bool HandleNpcModifySpeedWalkCommand(ChatHandler* handler, const char* args)
+    {
+        if (!*args)
+            return false;
+
+        float Speed = (float)atof((char*)args);
+
+        if (Speed > 50.0f || Speed < 0.1f)
+        {
+            handler->SendSysMessage(LANG_BAD_VALUE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+
+        Creature* target = handler->getSelectedCreature();
+        if (!target)
+        {
+            handler->SendSysMessage(LANG_SELECT_CREATURE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+        
+        handler->PSendSysMessage(LANG_YOU_CHANGE_SPEED, Speed, "selected creature");
+        target->SetSpeed(MOVE_WALK,                 Speed,true);
+
+        return true;
+    }
+
+    static bool HandleNpcModifySpeedRunCommand(ChatHandler* handler, const char* args)
+    {
+        if (!*args)
+            return false;
+
+        float Speed = (float)atof((char*)args);
+
+        if (Speed > 50.0f || Speed < 0.1f)
+        {
+            handler->SendSysMessage(LANG_BAD_VALUE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+
+        Creature* target = handler->getSelectedCreature();
+        if (!target)
+        {
+            handler->SendSysMessage(LANG_SELECT_CREATURE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+        
+        handler->PSendSysMessage(LANG_YOU_CHANGE_SPEED, Speed, "selected creature");
+        target->SetSpeed(MOVE_RUN,                  Speed,true);
+        target->SetSpeed(MOVE_RUN_BACK,             Speed,true);
+        
+        return true;
+    }
+    
+    static bool HandleNpcModifySpeedSwimCommand(ChatHandler* handler, const char* args)
+    {
+        if (!*args)
+            return false;
+
+        float Speed = (float)atof((char*)args);
+
+        if (Speed > 50.0f || Speed < 0.1f)
+        {
+            handler->SendSysMessage(LANG_BAD_VALUE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+
+        Creature* target = handler->getSelectedCreature();
+        if (!target)
+        {
+            handler->SendSysMessage(LANG_SELECT_CREATURE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+        
+        handler->PSendSysMessage(LANG_YOU_CHANGE_SWIM_SPEED, Speed, "selected creature");
+        target->SetSpeed(MOVE_SWIM,                 Speed,true);
+        target->SetSpeed(MOVE_SWIM_BACK,            Speed,true);
+
+        return true;
+    }
+    
+    static bool HandleNpcModifySpeedFlightCommand(ChatHandler* handler, const char* args)
+    {
+        if (!*args)
+            return false;
+
+        float Speed = (float)atof((char*)args);
+
+        if (Speed > 50.0f || Speed < 0.1f)
+        {
+            handler->SendSysMessage(LANG_BAD_VALUE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+
+        Creature* target = handler->getSelectedCreature();
+        if (!target)
+        {
+            handler->SendSysMessage(LANG_SELECT_CREATURE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+        
+        handler->PSendSysMessage(LANG_YOU_CHANGE_FLY_SPEED, Speed, "selected creature");
+        target->SetSpeed(MOVE_FLIGHT,               Speed,true);
+        target->SetSpeed(MOVE_FLIGHT_BACK,          Speed,true);
+
+        return true;
+    }
     //TODO: NpcCommands that need to be fixed :
     static bool HandleNpcAddWeaponCommand(ChatHandler* /*handler*/, const char* /*args*/)
     {
