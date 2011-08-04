@@ -1,0 +1,7 @@
+DELETE FROM `command` WHERE `name` LIKE 'npc modify speed%';
+INSERT INTO `command` VALUES
+('npc modify speed', '3', 'Syntax: .npc modify aspeed #rate\r\n\r\nModify all speeds -run,swim,run back,swim back- of the selected creature to \"normalbase speed for this move type\"*rate. \r\n\r\n #rate may range from 0.1 to 50.'),
+('npc modify speed run', '3', 'Syntax: .modify speed #rate\r\n.speed #rate\r\n\r\nModify the running speed of the selected creature to \"normal base run speed\"*rate. \r\n\r\n #rate may range from 0.1 to 50.'),
+('npc modify speed walk', '3', 'Syntax: .npc modify speed walk #rate\r\n.speed #rate\r\n\r\nModify the walking speed of the selected creature to \"normal base walk speed\"*rate. \r\n\r\n #rate may range from 0.1 to 50.'),
+('npc modify speed swim', '3', 'Syntax: .npc modify speed swim #rate\r\n.speed #rate\r\n\r\nModify the swimming speed of the selected creature to \"normal base swim speed\"*rate. \r\n\r\n #rate may range from 0.1 to 50.'),
+('npc modify speed flight', '3', 'Syntax: .npc modify speed flight #rate\r\n.speed #rate\r\n\r\nModify the flying speed of the selected creature to \"normal base fly speed\"*rate. \r\n\r\n #rate may range from 0.1 to 50.');
